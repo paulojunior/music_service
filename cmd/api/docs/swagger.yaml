@@ -1,0 +1,110 @@
+info:
+  contact: {}
+paths:
+  /music/{isrc}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve music information by its ISRC (International Standard
+        Recording Code)
+      parameters:
+      - description: ISRC of the music
+        format: isrc
+        in: path
+        name: isrc
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully retrieved music information
+          schema:
+            items:
+              type: object
+            type: array
+        "400":
+          description: ISRC not found
+          schema:
+            type: string
+        "404":
+          description: Music not found
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Get music by ISRC
+      tags:
+      - music
+  /music/artist/{name}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve music information by the name of the artist
+      parameters:
+      - description: Name of the artist
+        example: '"John Doe"'
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully retrieved music information
+          schema:
+            items:
+              type: object
+            type: array
+        "400":
+          description: Name cannot be empty
+          schema:
+            type: string
+        "404":
+          description: Music not found
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Get music by artist name
+      tags:
+      - music
+  /tracks/{isrc}:
+    post:
+      consumes:
+      - application/json
+      description: Retrieve track information from Spotify based on the provided ISRC
+      parameters:
+      - description: ISRC of the track
+        in: path
+        name: isrc
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Track inserted successfully
+          schema:
+            type: string
+        "400":
+          description: ISRC not found
+          schema:
+            type: string
+        "404":
+          description: Track not found
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Insert music track metadata
+      tags:
+      - tracks
+swagger: "2.0"

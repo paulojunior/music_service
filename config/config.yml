@@ -1,0 +1,11 @@
+spotify:
+  api_url: "https://api.spotify.com/v1"
+  auth_url: "https://accounts.spotify.com/api/token"
+  client_id: "YOUR_CLIENT_ID"
+  client_secret: "YOUR_SECRET"
+
+
+postgresql:
+  dsn: "host=localhost port=5432 user=postgres password=password dbname=musics sslmode=disable timezone=UTC"
+
+jwt_secret: "your-256-bit-secret"
